@@ -21,7 +21,7 @@
 package projetolp2.hotelriviera;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,15 +38,15 @@ public class CasoDeUso2 {
 										"Av. Campinas, 567, Tambau, Joao Pessoa - PB",
 										"234.674.897-45",
 										"(83) 8546-5435",
-										new Date()); //ajeitar pra ser a data de nascimento
+										new GregorianCalendar(1990, 01, 22));
 		
-		Hospede hospede2 = new Hospede ("Caio Lima Albuqerque",
+		Hospede hospede2 = new Hospede ("Caio ALima Albuqerque",
 										"Rua Florencia, 134, Boa Viagem, Reife - PE",
 										"675.976.453-76",
 										"(82) 3546-5876",
-										new Date()); //ajeitar Date
+										new GregorianCalendar(1990, 02, 28));
 		
-		Quarto quarto1 = new LuxoDuplo(3);
+		Quarto quarto1 = new LuxoSimples(3);
 		Quarto quarto2 = new Presidencial(4);
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
@@ -65,14 +65,27 @@ public class CasoDeUso2 {
 	}
 	
 	@Test
-	public void TestarBabysitter() {
-		Babysitter babysitter1 = new Babysitter(false);
-		contrato1.adicionaAdicionais(babysitter1);
-		Assert.assertEquals(contrato1.getAdicionais().get(0).getCobranca(), 25.00, 0.01);
+	public void TestarBabysitter() throws Exception {
+		try {
+			new Babysitter(false, 15);
+			Assert.fail("O número de horas não pode exceder 12.");
+		} catch (Exception e) {
+			Assert.assertEquals("O número de horas não pode ser negativo ou acima de 12.", e.getMessage());
+		}
+		try {
+			new Babysitter(false, -1);
+			Assert.fail("O número de horas não pode ser negativo.");
+		} catch (Exception e) {
+			Assert.assertEquals("O número de horas não pode ser negativo ou acima de 12.", e.getMessage());
+		}
 		
-		Babysitter babysitter2 = new Babysitter(true);
+		Babysitter babysitter1 = new Babysitter(false, 5);
+		contrato1.adicionaAdicionais(babysitter1);
+		Assert.assertEquals(contrato1.getAdicionais().get(0).getCobranca(), 125.00, 0.01);
+		
+		Babysitter babysitter2 = new Babysitter(true, 5);
 		contrato2.adicionaAdicionais(babysitter2);
-		Assert.assertEquals(contrato2.getAdicionais().get(0).getCobranca(), 50.00, 0.01);
+		Assert.assertEquals(contrato2.getAdicionais().get(0).getCobranca(), 250.00, 0.01);
 	}
 	
 	@Test
@@ -93,10 +106,10 @@ public class CasoDeUso2 {
 	
 
 	@Test
-	public void testaPesquisarServicos(){
+	public void testaPesquisarServicos() throws Exception{
 		AluguelCarro aluguel1 = new AluguelCarro(new CarroExecutivo(false, true));
 		contrato1.adicionaAdicionais(aluguel1);
-		Babysitter babysitter1 = new Babysitter(false);
+		Babysitter babysitter1 = new Babysitter(false, 5);
 		contrato1.adicionaAdicionais(babysitter1);
 		Refeicoes refeicoes1 = new Refeicoes();
 		refeicoes1.acrescentaRefeicao(64.70);
@@ -120,7 +133,7 @@ public class CasoDeUso2 {
 			if (servicos.get(i) instanceof Babysitter)
 				servico = servicos.get(i).toString();
 		}
-		Assert.assertEquals(" - Babysitter - \nValor por hora: 25.0", servico);		
+		Assert.assertEquals(" - Babysitter - \nValor por hora: 25.0\nValor total de serviço: 125.0", servico);		
 		System.out.println(servico);
 		//Busca de Refeicoes
 		for (int i=0; i < quantidade_servicos; i++){
@@ -132,10 +145,10 @@ public class CasoDeUso2 {
 	}
 	
 	@Test
-	public void testaRemoverServicos(){
+	public void testaRemoverServicos() throws Exception{
 		AluguelCarro aluguel1 = new AluguelCarro(new CarroExecutivo(false, true));
 		contrato1.adicionaAdicionais(aluguel1);
-		Babysitter babysitter1 = new Babysitter(false);
+		Babysitter babysitter1 = new Babysitter(false, 5);
 		contrato1.adicionaAdicionais(babysitter1);
 		Refeicoes refeicoes1 = new Refeicoes();
 		refeicoes1.acrescentaRefeicao(64.70);

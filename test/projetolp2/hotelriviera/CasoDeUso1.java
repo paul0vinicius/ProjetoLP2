@@ -11,12 +11,15 @@
 package projetolp2.hotelriviera;
 
 import org.junit.*;
+
 import java.util.*;
 
 public class CasoDeUso1 {
 	
 	public Contrato contrato1;
 	public Contrato contrato2;
+	GregorianCalendar dataHospede1 = new GregorianCalendar(1990, 01, 22);
+	GregorianCalendar dataHospede2 = new GregorianCalendar(1990, 02, 28);
 	
 	
 	@Before
@@ -25,13 +28,13 @@ public class CasoDeUso1 {
 										"Av. Campinas, 567, Tambau, Joao Pessoa - PB",
 										"234.674.897-45",
 										"(83) 8546-5435",
-										new Date()); //ajeitar pra ser a data de nascimento
+										new GregorianCalendar(1990, 01, 22));
 		
 		Hospede hospede2 = new Hospede ("Caio ALima Albuqerque",
 										"Rua Florencia, 134, Boa Viagem, Reife - PE",
 										"675.976.453-76",
 										"(82) 3546-5876",
-										new Date()); //ajeitar Date
+										new GregorianCalendar(1990, 02, 28));
 		
 		Quarto quarto1 = new LuxoSimples(2);
 		Quarto quarto2 = new Presidencial (3);
@@ -55,6 +58,9 @@ public class CasoDeUso1 {
 		Assert.assertTrue(hospede2.getCPF().equals("675.976.453-76"));
 		Assert.assertTrue(hospede1.getTelefoneContato().equals("(83) 8546-5435"));
 		Assert.assertTrue(hospede2.getTelefoneContato().equals("(82) 3546-5876"));
+		Assert.assertTrue(hospede1.getDataNascimento().equals(dataHospede1));
+		Assert.assertTrue(hospede2.getDataNascimento().equals(dataHospede2));
+		
 		
 		Assert.assertTrue(contrato1.getNumeroCartao().equals("2314-4313-3123-1234"));
 		Assert.assertTrue(contrato2.getNumeroCartao().equals("2314-5455-3198-1094"));
@@ -72,7 +78,7 @@ public class CasoDeUso1 {
 											"Av. Nova Morada, 001, Geisel, Joao Pessoa - PB",
 											"587.749.123-45",
 											"(83) 8875-4387",
-											new Date());
+											new GregorianCalendar(1990, 02, 28));
 		
 		contrato1.setHospede(novohospede); // Redefinido o hospede do contrato, atualizando as informacoes
 		Hospede hospede = contrato1.getHospede();

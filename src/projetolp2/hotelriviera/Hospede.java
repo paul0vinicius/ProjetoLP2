@@ -7,9 +7,9 @@ public class Hospede {
 	private String endereco;
 	private String CPF;
 	private String telefoneContato;
-	private Date dataNascimento;
+	private GregorianCalendar dataNascimento;
 	
-	public Hospede (String nome, String endereco, String CPF, String telefoneContato, Date dataNascimento) throws Exception {
+	public Hospede (String nome, String endereco, String CPF, String telefoneContato, GregorianCalendar dataNascimento) throws Exception {
 		if (nome == null || endereco == null || CPF == null || telefoneContato == null || dataNascimento == null) {
 			throw new Exception("Os dados fornecidos não podem ser do tipo 'null'");
 		}
@@ -53,11 +53,11 @@ public class Hospede {
 		this.telefoneContato = telefoneContato;
 	}
 
-	public Date getDataNascimento() {
+	public GregorianCalendar getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(GregorianCalendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

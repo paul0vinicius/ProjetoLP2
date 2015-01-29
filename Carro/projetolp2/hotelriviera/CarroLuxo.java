@@ -1,5 +1,6 @@
 package projetolp2.hotelriviera;
 
+
 public class CarroLuxo extends Carro {
 	private final static double DIARIA_CARRO_LUXO = 100;
 
@@ -15,5 +16,10 @@ public class CarroLuxo extends Carro {
 		valorAPagar += DIARIA_CARRO_LUXO;
 		
 		return valorAPagar;
+	}
+	
+	@Override
+	public String toString(){
+		return "Carro Luxo" + super.toString();
 	}
 }

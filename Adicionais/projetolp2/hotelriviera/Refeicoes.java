@@ -22,5 +22,10 @@ public class Refeicoes implements Adicional {
 		
 		return valorTotalConsumido;
 	}
+	
+	@Override
+	public String toString(){
+		return " - Refeicoes - \nValor total consumido: " + getValorTotalConsumido();
+	}
 
 }

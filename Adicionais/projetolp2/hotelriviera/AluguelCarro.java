@@ -15,4 +15,9 @@ public class AluguelCarro implements Adicional {
 	public double getCobranca() {
 		return carro.totalAPagar();
 	}
+	
+	@Override
+	public String toString(){
+		return " - Aluguel de carro - \n" + carro + "\nCobranca Total: R$" + getCobranca();
+	}
 }

@@ -13,15 +13,15 @@ public abstract class Carro {
 		this.seguro = seguroCarro;
 	}
 	
-		public double getValorDiaria() {
+	public double getValorDiaria() {
 		return valorDiaria;
 	}
 
-		public void setValorDiaria(double valorDiaria) {
-			this.valorDiaria = valorDiaria;
+	public void setValorDiaria(double valorDiaria) {
+		this.valorDiaria = valorDiaria;
 		}
 
-		public boolean isTanqueCheio() {
+	public boolean isTanqueCheio() {
 		return tanqueCheio;
 	}
 
@@ -30,4 +30,10 @@ public abstract class Carro {
 	}
 	
 	public abstract double totalAPagar ();
+	
+	@Override
+	public String toString(){
+		return "\nSeguro: " + isSeguro() + "\nTanque cheio: " + isTanqueCheio() + "\nDiaria: " + valorDiaria;
+	}
+
 }

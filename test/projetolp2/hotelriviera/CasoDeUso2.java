@@ -91,6 +91,7 @@ public class CasoDeUso2 {
 	@Test
 	public void TestarRefeicoes() {
 		Refeicoes refeicoes1 = new Refeicoes();
+		Assert.assertEquals(contrato1.getCobranca(), 0.0,0.01);
 		refeicoes1.acrescentaRefeicao(64.70);
 		refeicoes1.acrescentaRefeicao(32.80);
 		contrato1.adicionaAdicionais(refeicoes1);

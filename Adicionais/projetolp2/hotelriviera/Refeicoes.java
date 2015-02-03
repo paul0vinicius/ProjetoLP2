@@ -1,7 +1,7 @@
 package projetolp2.hotelriviera;
 
 public class Refeicoes implements Adicional {
-	private double valorTotalConsumido;
+	private double valorTotalConsumido = 0.0;
 
 	@Override
 	public double getValorServico() {
